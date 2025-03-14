@@ -5,6 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:frontend": "npm run dev --workspace @terrible-ideas-hackathon-2025/frontend",
+    "dev:backend": "npm run dev --workspace @terrible-ideas-hackathon-2025/backend",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "prepare": "husky install"
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
+    "commitlint": "^19.8.0",
     "husky": "^8.0.3",
     "lint-staged": "^15.5.0",
     "prettier": "^3.5.3",
