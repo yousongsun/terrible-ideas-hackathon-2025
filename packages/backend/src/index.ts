@@ -33,31 +33,32 @@ function sendToRandomClients(data: string, clicker: Socket) {
       clickerRandomClients[clickerId] = [];
     }
 
-    // If we don't have 3 random clients for this clicker, choose them
-    if (clickerRandomClients[clickerId].length < 3) {
-      while (clickerRandomClients[clickerId].length < 3) {
-        // Exclude the clicker itself from the random selection
-        const availableClients = clients.filter((client) => client !== clicker);
+    while (clickerRandomClients[clickerId].length < 2) {
+      // Exclude the clicker itself from the random selection
+      const availableClients = clients.filter((client) => client !== clicker);
 
-        const randomIndex = Math.floor(Math.random() * availableClients.length);
-        const selectedClient = availableClients[randomIndex];
+      const randomIndex = Math.floor(Math.random() * availableClients.length);
+      const selectedClient = availableClients[randomIndex];
 
-        // Ensure the client is not already selected
-        if (!clickerRandomClients[clickerId].includes(selectedClient)) {
-          clickerRandomClients[clickerId].push(selectedClient);
-        }
-
-        if (availableClients.length <= 1) {
-          break;
-        }
+      // Ensure the client is not already selected
+      if (!clickerRandomClients[clickerId].includes(selectedClient)) {
+        clickerRandomClients[clickerId].push(selectedClient);
       }
+
+      console.log(availableClients.length);
+
+      if (availableClients.length <= 1) {
+        break;
+      }
+      console.log('end while');
     }
 
     // Send messages to the two random clients for this clicker
     clickerRandomClients[clickerId].forEach((client: Socket) => {
       client.emit(
         'response',
-        `You are selected to receive continuous messages from Clicker ${clickerId}: ${data}`,
+        `${data}`,
+        // `You are selected to receive continuous messages from Clicker ${clickerId}: ${data}`,
       );
     });
 
@@ -108,6 +109,8 @@ io.on('connection', (socket) => {
 
     // Call the function to start sending messages to two random clients
     sendToRandomClients(data, socket);
+
+    console.log('end');
   });
 
   // Handle disconnections
