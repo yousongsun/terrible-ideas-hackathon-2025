@@ -19,6 +19,22 @@ app.get('/', (req, res) => {
   res.send('Socket.IO API is running!');
 });
 
+// // Send a message to all clients every 5 seconds
+// const intervalId = setInterval(() => {
+//   io.emit('autoMessage', 'Hello from server!'); // Broadcast message to all clients
+// }, 5000); // 5000 milliseconds = 5 seconds
+
+// Start a counter at 0, send the counter value to all clients every 2 seconds
+let counter = 0;
+const intervalId = setInterval(() => {
+  io.emit('autoMessage', counter); // Emit the current counter value (0, 2, 4, ...)
+  counter += 2; // Increment the counter by 2
+  // If the counter exceeds 48, reset it back to 0
+  if (counter > 48) {
+    counter = 0; // Reset the counter to 0
+  }
+}, 2000); // 2000 milliseconds = 2 seconds
+
 // Handle incoming socket connections
 io.on('connection', (socket) => {
   console.log('A user connected');
@@ -38,6 +54,6 @@ io.on('connection', (socket) => {
 
 // Start the server
 const port = 3000;
-server.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+server.listen(port, '0.0.0.0', () => {
+  console.log(`Server is running on http://0.0.0.0:${port}`);
 });
