@@ -65,6 +65,7 @@ function App() {
 
   const shortSound = (number: number) => {
     const soundFiles: { [key: number]: string } = {
+      0: 'https://cdn.pixabay.com/download/audio/2024/12/20/audio_d3efed8c6c.mp3',
       1: 'https://cdn.pixabay.com/download/audio/2024/12/20/audio_d3efed8c6c.mp3',
       2: 'https://cdn.pixabay.com/download/audio/2024/12/20/audio_d3efed8c6c.mp3',
       3: 'https://cdn.pixabay.com/download/audio/2024/12/20/audio_d3efed8c6c.mp3',
@@ -73,7 +74,6 @@ function App() {
       6: 'https://cdn.pixabay.com/download/audio/2024/12/20/audio_d3efed8c6c.mp3',
       7: 'https://cdn.pixabay.com/download/audio/2024/12/20/audio_d3efed8c6c.mp3',
       8: 'https://cdn.pixabay.com/download/audio/2024/12/20/audio_d3efed8c6c.mp3',
-      9: 'https://cdn.pixabay.com/download/audio/2024/12/20/audio_d3efed8c6c.mp3',
     };
 
     const src = soundFiles[number];
