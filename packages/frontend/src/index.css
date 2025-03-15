@@ -363,3 +363,279 @@ footer {
     height: 12.5vh;
   }
 }
+
+@media (max-width: 1280px) and (max-height: 1440px) {
+  body {
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+  }
+
+  header {
+    height: 14vh;
+  }
+
+  .inner-header {
+    width: 20rem;
+  }
+
+  main {
+    height: 76vh;
+  }
+
+  .main-l {
+    margin: 0 0 0;
+    width: 20rem;
+  }
+
+  .cover {
+    width: 20rem;
+  }
+
+  .cover-subtitle {
+    margin: 0.25rem 0 1rem;
+  }
+
+  .main-r {
+    width: 20rem;
+    height: 20rem;
+  }
+
+  .drumpad {
+    height: 6rem;
+    width: 6rem;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    margin: 0.25rem;
+    border-top: 2px solid #4b4b4b;
+    border-right: 2px solid #4b4b4b;
+    border-bottom: 6px solid #2c2c2c;
+    border-left: 2px solid #4b4b4b;
+  }
+
+  .drumpad:active {
+    height: calc(6rem - 6px);
+    margin: calc(0.25rem + 6px) 0.25rem 0.25rem;
+    border-top: 2px solid rgb(216, 216, 216);
+    border-right: 2px solid rgb(216, 216, 216);
+    border-bottom: 2px solid rgb(216, 216, 216);
+    border-left: 2px solid rgb(216, 216, 216);
+  }
+
+  footer {
+    height: 10vh;
+  }
+}
+
+@media (max-width: 1280px) and (max-height: 720px) {
+  body {
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+  }
+
+  header {
+    height: 20vh;
+  }
+
+  .inner-header {
+    width: 43rem;
+  }
+
+  .logo {
+    width: 6rem;
+  }
+
+  main {
+    height: 68vh;
+  }
+
+  .main-inner {
+    flex-direction: row;
+  }
+
+  .main-l {
+    margin: 0 3rem 0 0;
+    width: 20rem;
+  }
+
+  .cover {
+    width: 20rem;
+  }
+
+  .cover-subtitle {
+    margin: 0.25rem 0 1rem;
+  }
+
+  .main-r {
+    width: 20rem;
+    height: 20rem;
+  }
+
+  .drumpad {
+    height: 6rem;
+    width: 6rem;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    margin: 0.25rem;
+    border-top: 2px solid #4b4b4b;
+    border-right: 2px solid #4b4b4b;
+    border-bottom: 6px solid #2c2c2c;
+    border-left: 2px solid #4b4b4b;
+  }
+
+  .drumpad:active {
+    height: calc(6rem - 6px);
+    margin: calc(0.25rem + 6px) 0.25rem 0.25rem;
+    border-top: 2px solid rgb(216, 216, 216);
+    border-right: 2px solid rgb(216, 216, 216);
+    border-bottom: 2px solid rgb(216, 216, 216);
+    border-left: 2px solid rgb(216, 216, 216);
+  }
+
+  footer {
+    height: 12vh;
+  }
+}
+
+@media (max-width: 1280px) and (max-height: 720px) {
+  body {
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+  }
+
+  header {
+    height: 20vh;
+  }
+
+  .inner-header {
+    width: 44rem;
+  }
+
+  .logo {
+    width: 6rem;
+  }
+
+  main {
+    height: 68vh;
+  }
+
+  .main-inner {
+    flex-direction: row;
+  }
+
+  .main-l {
+    margin: 0 4rem 0 0;
+    width: 20rem;
+  }
+
+  .cover {
+    width: 20rem;
+  }
+
+  .cover-subtitle {
+    margin: 0.25rem 0 1rem;
+  }
+
+  .main-r {
+    width: 20rem;
+    height: 20rem;
+  }
+
+  .drumpad {
+    height: 6rem;
+    width: 6rem;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    margin: 0.25rem;
+    border-top: 2px solid #4b4b4b;
+    border-right: 2px solid #4b4b4b;
+    border-bottom: 6px solid #2c2c2c;
+    border-left: 2px solid #4b4b4b;
+  }
+
+  .drumpad:active {
+    height: calc(6rem - 6px);
+    margin: calc(0.25rem + 6px) 0.25rem 0.25rem;
+    border-top: 2px solid rgb(216, 216, 216);
+    border-right: 2px solid rgb(216, 216, 216);
+    border-bottom: 2px solid rgb(216, 216, 216);
+    border-left: 2px solid rgb(216, 216, 216);
+  }
+
+  footer {
+    height: 12vh;
+  }
+}
+
+@media (max-width: 750px) and (max-height: 720px) {
+  body {
+    font-size: 0.8rem;
+    letter-spacing: 0.08rem;
+  }
+
+  header {
+    height: 12vh;
+  }
+
+  .inner-header {
+    width: 12.5rem;
+  }
+
+  .logo {
+    width: 6rem;
+  }
+
+  main {
+    height: 80vh;
+  }
+
+  .main-inner {
+    flex-direction: column;
+  }
+
+  .main-l {
+    margin: 0 0;
+    width: 12.5rem;
+  }
+
+  .cover {
+    width: 12.5rem;
+  }
+
+  .cover-subtitle {
+    margin: 0.25rem 0 0.5rem;
+  }
+
+  .main-r {
+    width: 12.5rem;
+    height: 12.5rem;
+  }
+
+  .drumpad {
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.08rem;
+    margin: 0.25rem;
+    border-top: 2px solid #4b4b4b;
+    border-right: 2px solid #4b4b4b;
+    border-bottom: 6px solid #2c2c2c;
+    border-left: 2px solid #4b4b4b;
+  }
+
+  .drumpad:active {
+    height: calc(3.5rem - 6px);
+    margin: calc(0.25rem + 6px) 0.25rem 0.25rem;
+    border-top: 2px solid rgb(216, 216, 216);
+    border-right: 2px solid rgb(216, 216, 216);
+    border-bottom: 2px solid rgb(216, 216, 216);
+    border-left: 2px solid rgb(216, 216, 216);
+  }
+
+  footer {
+    height: 8vh;
+  }
+}
