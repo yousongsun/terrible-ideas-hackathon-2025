@@ -1,17 +1,78 @@
 import express from 'express';
 import http from 'http';
-import socketIo from 'socket.io';
+import { Socket, Server } from 'socket.io';
+import path from 'path';
 
 // Initialize the express app
 const app = express();
 const server = http.createServer(app);
 
+// Serve static files from the "public" folder
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Initialize Socket.IO
-const io = new socketIo.Server(server, {
+const io = new Server(server, {
   cors: {
     origin: '*', // You can set specific origins here
     methods: ['GET', 'POST'],
   },
+});
+
+// To store all connected sockets
+let clients: Socket[] = [];
+let clickerRandomClients: { [key: string]: Socket[] } = {};
+
+// Function to start sending messages to two random clients specific to a clicker
+function sendToRandomClients(data: string, clicker: Socket) {
+  // Ensure there are at least two clients to send messages
+  if (clients.length >= 2) {
+    const clickerId = clicker.id;
+
+    // If there are no random clients for this clicker, initialize it
+    if (!clickerRandomClients[clickerId]) {
+      clickerRandomClients[clickerId] = [];
+    }
+
+    // If we don't have 3 random clients for this clicker, choose them
+    if (clickerRandomClients[clickerId].length < 3) {
+      while (clickerRandomClients[clickerId].length < 3) {
+        // Exclude the clicker itself from the random selection
+        const availableClients = clients.filter((client) => client !== clicker);
+
+        const randomIndex = Math.floor(Math.random() * availableClients.length);
+        const selectedClient = availableClients[randomIndex];
+
+        // Ensure the client is not already selected
+        if (!clickerRandomClients[clickerId].includes(selectedClient)) {
+          clickerRandomClients[clickerId].push(selectedClient);
+        }
+
+        if (availableClients.length <= 1) {
+          break;
+        }
+      }
+    }
+
+    // Send messages to the two random clients for this clicker
+    clickerRandomClients[clickerId].forEach((client: Socket) => {
+      client.emit(
+        'response',
+        `You are selected to receive continuous messages from Clicker ${clickerId}: ${data}`,
+      );
+    });
+
+    console.log(
+      `Started sending continuous messages to:`,
+      clickerRandomClients[clickerId].map((client) => client.id),
+    );
+  } else {
+    console.log('Not enough clients to send to');
+  }
+}
+
+// Optionally, you can also serve an index.html from the root of your public folder
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Serve a simple HTML page (optional, for testing purposes)
@@ -30,7 +91,7 @@ const intervalId = setInterval(() => {
   io.emit('autoMessage', counter); // Emit the current counter value (0, 2, 4, ...)
   counter += 2; // Increment the counter by 2
   // If the counter exceeds 48, reset it back to 0
-  if (counter > 48) {
+  if (counter > 82) {
     counter = 0; // Reset the counter to 0
   }
 }, 2000); // 2000 milliseconds = 2 seconds
@@ -39,15 +100,29 @@ const intervalId = setInterval(() => {
 io.on('connection', (socket) => {
   console.log('A user connected');
 
+  clients.push(socket);
+
   // Listen for a custom event from the client
   socket.on('message', (data) => {
     console.log('Message received:', data);
-    // Emit a response back to the client
-    socket.emit('response', `Server received: ${data}`);
+
+    // Call the function to start sending messages to two random clients
+    sendToRandomClients(data, socket);
   });
 
   // Handle disconnections
   socket.on('disconnect', () => {
+    clients = clients.filter((client) => client !== socket);
+    // Remove the disconnected socket from the clicker's random clients list
+    const disconnectedId = socket.id;
+    delete clickerRandomClients[disconnectedId]; // Remove the disconnected socket's random clients entry
+
+    // Iterate over all clickers and remove the disconnected socket from their random clients
+    for (const clickerId in clickerRandomClients) {
+      clickerRandomClients[clickerId] = clickerRandomClients[clickerId].filter(
+        (client) => client.id !== disconnectedId,
+      );
+    }
     console.log('A user disconnected');
   });
 });
