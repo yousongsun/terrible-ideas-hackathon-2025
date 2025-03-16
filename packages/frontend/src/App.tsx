@@ -3,14 +3,21 @@ import { Howl } from 'howler';
 import { io, Socket } from 'socket.io-client';
 import siteLogo from '/untitled(3).svg';
 import coverImg from '/cover.webp';
+import { motion } from 'motion/react';
+import { AnimatePresence } from 'motion/react';
 
-const SOCKET_SERVER_URL = 'http://172.24.46.77:3000';
+const SOCKET_SERVER_URL = 'ws://music.sweetpea.one/';
 
 function App() {
   const [socket, setSocket] = useState<Socket | null>(null);
   // const [messages, setMessages] = useState<string[]>([]);
 
   const [isPlaying, setIsPlaying] = useState(false);
+
+  const [isWelcomeOpen, setIsWelcomeOpen] = useState(true);
+  const handleWelcome = () => {
+    setIsWelcomeOpen(false);
+  };
 
   useEffect(() => {
     const socketConnection = io(SOCKET_SERVER_URL, {
@@ -149,6 +156,32 @@ function App() {
   ];
   return (
     <>
+      <AnimatePresence>
+        {isWelcomeOpen && (
+          <motion.div
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="welcome"
+            onClick={handleWelcome}
+          >
+            <div className="welcome-mid">
+              <img
+                src={coverImg}
+                alt="Picture of well-to-do man walking his dog."
+                className="welcome-cover"
+              />
+              <motion.p className="welcome-text">
+                press anywhere to start
+              </motion.p>
+            </div>
+            <p className="welcome-cred">
+              by watshisname-stuutzer / feat. yousong
+              <br />
+              prod. by nick
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <header>
         <div className="inner-header">
           <a href="/">
