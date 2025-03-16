@@ -6,7 +6,7 @@ import coverImg from '/cover.webp';
 import { motion } from 'motion/react';
 import { AnimatePresence } from 'motion/react';
 
-const SOCKET_SERVER_URL = 'ws://music.sweetpea.one/';
+const SOCKET_SERVER_URL = 'wss://music.sweetpea.one/';
 
 function App() {
   const [socket, setSocket] = useState<Socket | null>(null);
@@ -170,7 +170,16 @@ function App() {
                 alt="Picture of well-to-do man walking his dog."
                 className="welcome-cover"
               />
-              <motion.p className="welcome-text">
+              <motion.p
+                initial={{ opacity: 0.5 }}
+                animate={{ opacity: [0.5, 1, 0.5] }}
+                transition={{
+                  duration: 1,
+                  repeat: Infinity,
+                  delay: 0.2,
+                }}
+                className="welcome-text"
+              >
                 press anywhere to start
               </motion.p>
             </div>
