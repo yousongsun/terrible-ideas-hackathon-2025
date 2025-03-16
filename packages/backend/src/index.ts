@@ -104,13 +104,21 @@ app.get('/', (req, res) => {
 // Start a counter at 0, send the counter value to all clients every 2 seconds
 let counter = 0;
 const intervalId = setInterval(() => {
-  io.emit('autoMessage', counter); // Emit the current counter value (0, 2, 4, ...)
   counter += 2; // Increment the counter by 2
   // If the counter exceeds 48, reset it back to 0
-  if (counter > 82) {
+  if (counter > 57) {
     counter = 0; // Reset the counter to 0
   }
+  io.emit('autoMessage', counter); // Emit the current counter value (0, 2, 4, ...)
+  console.log(counter);
 }, 2000); // 2000 milliseconds = 2 seconds
+
+app.get('/0', (req, res) => {
+  counter = 0; // Reset the counter
+  console.log('Counter has been reset to 0.');
+  io.emit('autoMessage', counter); // Emit reset counter value
+  res.send({ message: 'Counter has been reset to 0', counter: 0 }); // Respond with the reset value
+});
 
 // Handle incoming socket connections
 io.on('connection', (socket) => {
