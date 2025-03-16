@@ -6,7 +6,7 @@ import coverImg from '/cover.webp';
 import { motion } from 'motion/react';
 import { AnimatePresence } from 'motion/react';
 
-const SOCKET_SERVER_URL = 'wss://music.sweetpea.one/';
+const SOCKET_SERVER_URL = 'ws://music.sweetpea.one/';
 
 function App() {
   const [socket, setSocket] = useState<Socket | null>(null);
@@ -214,6 +214,7 @@ function App() {
                 className="drumpad"
                 key={index}
                 onClick={() => {
+                  playShortSound(index);
                   sendMessage(String(index));
                 }}
               >
