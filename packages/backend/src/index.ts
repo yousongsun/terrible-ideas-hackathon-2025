@@ -26,46 +26,61 @@ let clickerRandomClients: { [key: string]: Socket[] } = {};
 function sendToRandomClients(data: string, clicker: Socket) {
   // Ensure there are at least two clients to send messages
   if (clients.length >= 2) {
-    const clickerId = clicker.id;
+    const randomClients: Socket[] = [];
+    const availableClients = [...clients];
 
-    // If there are no random clients for this clicker, initialize it
-    if (!clickerRandomClients[clickerId]) {
-      clickerRandomClients[clickerId] = [];
-    }
-
-    while (clickerRandomClients[clickerId].length < 2) {
-      // Exclude the clicker itself from the random selection
-      const availableClients = clients.filter((client) => client !== clicker);
-
+    // Select 2 random clients
+    for (let i = 0; i < 2; i++) {
       const randomIndex = Math.floor(Math.random() * availableClients.length);
-      const selectedClient = availableClients[randomIndex];
-
-      // Ensure the client is not already selected
-      if (!clickerRandomClients[clickerId].includes(selectedClient)) {
-        clickerRandomClients[clickerId].push(selectedClient);
-      }
-
-      console.log(availableClients.length);
-
-      if (availableClients.length <= 1) {
-        break;
-      }
-      console.log('end while');
+      randomClients.push(availableClients[randomIndex]);
+      availableClients.splice(randomIndex, 1); // Remove the selected client
     }
 
-    // Send messages to the two random clients for this clicker
-    clickerRandomClients[clickerId].forEach((client: Socket) => {
-      client.emit(
-        'response',
-        `${data}`,
-        // `You are selected to receive continuous messages from Clicker ${clickerId}: ${data}`,
-      );
+    // Send data to the selected clients
+    randomClients.forEach((client: Socket) => {
+      client.emit('response', `${data}`);
     });
 
-    console.log(
-      `Started sending continuous messages to:`,
-      clickerRandomClients[clickerId].map((client) => client.id),
-    );
+    // const clickerId = clicker.id;
+
+    // // If there are no random clients for this clicker, initialize it
+    // if (!clickerRandomClients[clickerId]) {
+    //   clickerRandomClients[clickerId] = [];
+    // }
+
+    // while (clickerRandomClients[clickerId].length < 2) {
+    //   // Exclude the clicker itself from the random selection
+    //   const availableClients = clients.filter((client) => client !== clicker);
+
+    //   const randomIndex = Math.floor(Math.random() * availableClients.length);
+    //   const selectedClient = availableClients[randomIndex];
+
+    //   // Ensure the client is not already selected
+    //   if (!clickerRandomClients[clickerId].includes(selectedClient)) {
+    //     clickerRandomClients[clickerId].push(selectedClient);
+    //   }
+
+    //   console.log(availableClients.length);
+
+    //   if (availableClients.length <= 1) {
+    //     break;
+    //   }
+    //   console.log('end while');
+    // }
+
+    // // Send messages to the two random clients for this clicker
+    // clickerRandomClients[clickerId].forEach((client: Socket) => {
+    //   client.emit(
+    //     'response',
+    //     `${data}`,
+    //     // `You are selected to receive continuous messages from Clicker ${clickerId}: ${data}`,
+    //   );
+    // });
+
+    // console.log(
+    //   `Started sending continuous messages to:`,
+    //   clickerRandomClients[clickerId].map((client) => client.id),
+    // );
   } else {
     console.log('Not enough clients to send to');
   }
@@ -117,15 +132,15 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     clients = clients.filter((client) => client !== socket);
     // Remove the disconnected socket from the clicker's random clients list
-    const disconnectedId = socket.id;
-    delete clickerRandomClients[disconnectedId]; // Remove the disconnected socket's random clients entry
+    // const disconnectedId = socket.id;
+    // delete clickerRandomClients[disconnectedId]; // Remove the disconnected socket's random clients entry
 
-    // Iterate over all clickers and remove the disconnected socket from their random clients
-    for (const clickerId in clickerRandomClients) {
-      clickerRandomClients[clickerId] = clickerRandomClients[clickerId].filter(
-        (client) => client.id !== disconnectedId,
-      );
-    }
+    // // Iterate over all clickers and remove the disconnected socket from their random clients
+    // for (const clickerId in clickerRandomClients) {
+    //   clickerRandomClients[clickerId] = clickerRandomClients[clickerId].filter(
+    //     (client) => client.id !== disconnectedId,
+    //   );
+    // }
     console.log('A user disconnected');
   });
 });
