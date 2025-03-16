@@ -72,15 +72,15 @@ function App() {
 
   const shortSound = (number: number) => {
     const soundFiles: { [key: number]: string } = {
-      0: 'https://cdn.pixabay.com/download/audio/2024/12/20/audio_d3efed8c6c.mp3',
-      1: 'https://cdn.pixabay.com/download/audio/2024/12/20/audio_d3efed8c6c.mp3',
-      2: 'https://cdn.pixabay.com/download/audio/2024/12/20/audio_d3efed8c6c.mp3',
-      3: 'https://cdn.pixabay.com/download/audio/2024/12/20/audio_d3efed8c6c.mp3',
-      4: 'https://cdn.pixabay.com/download/audio/2024/12/20/audio_d3efed8c6c.mp3',
-      5: 'https://cdn.pixabay.com/download/audio/2024/12/20/audio_d3efed8c6c.mp3',
-      6: 'https://cdn.pixabay.com/download/audio/2024/12/20/audio_d3efed8c6c.mp3',
-      7: 'https://cdn.pixabay.com/download/audio/2024/12/20/audio_d3efed8c6c.mp3',
-      8: 'https://cdn.pixabay.com/download/audio/2024/12/20/audio_d3efed8c6c.mp3',
+      0: '/effects/1.mp3',
+      1: '/effects/1.mp3',
+      2: '/effects/1.mp3',
+      3: '/effects/1.mp3',
+      4: '/effects/1.mp3',
+      5: '/effects/1.mp3',
+      6: '/effects/1.mp3',
+      7: '/effects/1.mp3',
+      8: '/effects/1.mp3',
     };
 
     const src = soundFiles[number];
