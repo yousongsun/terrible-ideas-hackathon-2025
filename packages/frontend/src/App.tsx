@@ -6,7 +6,7 @@ import coverImg from '/cover.webp';
 import { motion } from 'motion/react';
 import { AnimatePresence } from 'motion/react';
 
-const SOCKET_SERVER_URL = 'ws://music.sweetpea.one/';
+const SOCKET_SERVER_URL = 'ws://20.211.81.79/';
 
 function App() {
   const [socket, setSocket] = useState<Socket | null>(null);
@@ -31,8 +31,8 @@ function App() {
     socketConnection.on('response', (message: string) => {
       // setMessages((prevMessages) => [...prevMessages, message]);
       // console.log(messages);
-      console.log(message);
       playShortSound(parseInt(message));
+      console.log(message);
     });
 
     socketConnection.on('autoMessage', (message: string) => {

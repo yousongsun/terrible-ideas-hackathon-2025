@@ -1,44 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Untitled Song (3)</title>
-</head>
+  </head>
 
-<body>
-    <div id="qrcodeContent" style="text-align: center;">
-        <div id="qrcode" style="display: inline-block;"></div>
+  <body>
+    <div id="qrcodeContent" style="text-align: center">
+      <div id="qrcode" style="display: inline-block"></div>
+      <h1 style="margin: 0">http://20.211.81.79</h1>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
     <script>
-        const text = "http://music.sweetpea.one/";
+      const text = 'http://20.211.81.79/';
 
-        const qrcodeElement = document.getElementById("qrcode");
+      const qrcodeElement = document.getElementById('qrcode');
 
-        qrcodeElement.innerHTML = '';
+      qrcodeElement.innerHTML = '';
 
-        QRCode.toCanvas(text, {
-            errorCorrectionLevel: 'H',
-            margin: 1,
-            width: 525,
-            color: {
-                dark: '#000000',
-                light: '#ffffff'
-            }
-        }, function (error, canvas) {
-            if (error) {
-                console.error(error);
-            } else {
-                qrcodeElement.appendChild(canvas);
-            }
-        });
+      QRCode.toCanvas(
+        text,
+        {
+          errorCorrectionLevel: 'H',
+          margin: 1,
+          width: 525,
+          color: {
+            dark: '#000000',
+            light: '#ffffff',
+          },
+        },
+        function (error, canvas) {
+          if (error) {
+            console.error(error);
+          } else {
+            qrcodeElement.appendChild(canvas);
+          }
+        },
+      );
     </script>
-
-
-
-</body>
-
+  </body>
 </html>
