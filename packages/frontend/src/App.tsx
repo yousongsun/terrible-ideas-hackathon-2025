@@ -73,14 +73,14 @@ function App() {
   const shortSound = (number: number) => {
     const soundFiles: { [key: number]: string } = {
       0: '/effects/1.mp3',
-      1: '/effects/1.mp3',
-      2: '/effects/1.mp3',
-      3: '/effects/1.mp3',
-      4: '/effects/1.mp3',
-      5: '/effects/1.mp3',
-      6: '/effects/1.mp3',
-      7: '/effects/1.mp3',
-      8: '/effects/1.mp3',
+      1: '/effects/2.mp3',
+      2: '/effects/3.mp3',
+      3: '/effects/4.mp3',
+      4: '/effects/5.mp3',
+      5: '/effects/6.mp3',
+      6: '/effects/7.mp3',
+      7: '/effects/8.mp3',
+      8: '/effects/9.mp3',
     };
 
     const src = soundFiles[number];
@@ -214,7 +214,12 @@ function App() {
                 className="drumpad"
                 key={index}
                 onClick={() => {
-                  playShortSound(index);
+                  console.log(index);
+                  console.log(index);
+                  console.log(index);
+                  console.log(index);
+                  console.log(index);
+                  // playShortSound(index);
                   sendMessage(String(index));
                 }}
               >
