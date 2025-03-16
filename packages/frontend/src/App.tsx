@@ -119,39 +119,39 @@ function App() {
   const pads = [
     {
       key: 1,
-      name: 'hello',
+      name: 'dog?',
     },
     {
       key: 2,
-      name: 'hello',
+      name: 'car?',
     },
     {
       key: 3,
-      name: 'hello',
+      name: 'huh?',
     },
     {
       key: 4,
-      name: 'hello',
+      name: 'bark',
     },
     {
       key: 5,
-      name: 'hello',
+      name: 'fwæ',
     },
     {
       key: 6,
-      name: 'hello',
+      name: 'yah',
     },
     {
       key: 7,
-      name: 'hello',
+      name: 'omg',
     },
     {
       key: 8,
-      name: 'hello',
+      name: 'nah',
     },
     {
       key: 9,
-      name: 'hello',
+      name: 'nah2',
     },
   ];
   return (
